@@ -10,6 +10,7 @@ def test_get_status():
     assert text_status == 'Готов к выписке'
     assert worker._patients_base == [2, 3, 1, 0]
 
+
 def test_status_down():
     patients_base = [2, 3, 1, 0]
     worker = PatientsManager(patients_base)
@@ -17,6 +18,7 @@ def test_status_down():
     worker.status_down(patient_id=2)
 
     assert worker._patients_base == [2, 2, 1, 0]
+
 
 def test_discharge():
     patients_base = [2, 3, 1, 0]
