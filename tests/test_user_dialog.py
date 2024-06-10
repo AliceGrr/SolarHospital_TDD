@@ -3,6 +3,7 @@ import unittest.mock
 import pytest
 
 from console_user_interface import ConsoleUserInterface
+from exceptions import InvalidPatientIdException
 from user_dialog import UserDialog
 
 

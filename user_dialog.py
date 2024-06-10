@@ -1,3 +1,6 @@
+from exceptions import InvalidPatientIdException
+
+
 class UserDialog:
     _COMMANDS = {
         'get_status': 'показать статус',
@@ -9,6 +12,9 @@ class UserDialog:
         self._user_interface = user_interface
 
     def _convert_patient_id(self, user_input_patient_id):
+        int_patient_id = int(user_input_patient_id)
+        if int_patient_id < 1:
+            raise InvalidPatientIdException()
         return int(user_input_patient_id)
 
     def _convert_command(self, user_input_command):
