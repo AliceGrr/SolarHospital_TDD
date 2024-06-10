@@ -12,7 +12,11 @@ class UserDialog:
         self._user_interface = user_interface
 
     def _convert_patient_id(self, user_input_patient_id):
-        int_patient_id = int(user_input_patient_id)
+        try:
+            int_patient_id = int(user_input_patient_id)
+        except ValueError as _:
+            raise InvalidPatientIdException()
+
         if int_patient_id < 1:
             raise InvalidPatientIdException()
         return int(user_input_patient_id)
