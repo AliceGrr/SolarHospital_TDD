@@ -46,3 +46,11 @@ def test_discharge():
     worker.discharge(patient_id=2)
 
     assert worker._patients_base == [2, 1, 0]
+
+
+def test_discharge_when_patient_not_exists():
+    patients_base = [2, 3, 1, 0]
+    worker = PatientsManager(patients_base)
+
+    with pytest.raises(PatientNotExistsException):
+        _ = worker.discharge(patient_id=99)
