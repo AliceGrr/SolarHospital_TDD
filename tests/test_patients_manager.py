@@ -36,7 +36,7 @@ def test_status_down_when_patient_not_exists():
     worker = PatientsManager(patients_base)
 
     with pytest.raises(PatientNotExistsException):
-        _ = worker.status_down(patient_id=99)
+        worker.status_down(patient_id=99)
 
 
 def test_discharge():
@@ -53,4 +53,6 @@ def test_discharge_when_patient_not_exists():
     worker = PatientsManager(patients_base)
 
     with pytest.raises(PatientNotExistsException):
-        _ = worker.discharge(patient_id=99)
+        worker.discharge(patient_id=99)
+
+    assert worker._patients_base == [2, 3, 1, 0]
