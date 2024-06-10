@@ -54,6 +54,13 @@ def test_status_down_when_empty_patients_base():
     with pytest.raises(PatientNotExistsException):
         worker.status_down(patient_id=1)
 
+def test_status_down_when_patient_status_minimum():
+    patients_base = [2, 3, 1, 0]
+    worker = PatientsManager(patients_base)
+
+    with pytest.raises(StatusTooLowException):
+        worker.status_down(patient_id=4)
+
 
 def test_discharge():
     patients_base = [2, 3, 1, 0]
