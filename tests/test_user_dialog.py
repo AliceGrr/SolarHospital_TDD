@@ -55,3 +55,10 @@ def test_convert_patient_id_when_negative_id():
     with pytest.raises(InvalidPatientIdException):
         _ = dialog._convert_patient_id('-1')
 
+
+def test_convert_patient_id_when_string_id():
+    dialog = UserDialog(ConsoleUserInterface())
+
+    with pytest.raises(InvalidPatientIdException):
+        _ = dialog._convert_patient_id('один')
+
