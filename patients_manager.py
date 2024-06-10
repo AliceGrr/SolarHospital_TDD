@@ -1,8 +1,9 @@
-from exceptions import PatientNotExistsException
+from exceptions import PatientNotExistsException, StatusTooLowException
 
 
 class PatientsManager:
     _ID_OFFSET = 1
+    _MIN_STATUS = 0
 
     _STR_PATIENTS_STATUSES = {
         0: 'Тяжело болен',
@@ -22,6 +23,8 @@ class PatientsManager:
 
     def status_down(self, patient_id):
         try:
+            if self._patients_base[patient_id-self._ID_OFFSET] == self._MIN_STATUS:
+                raise StatusTooLowException()
             self._patients_base[patient_id-self._ID_OFFSET] -= 1
         except IndexError as _:
             raise PatientNotExistsException()
