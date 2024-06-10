@@ -44,3 +44,11 @@ def test_convert_patient_id():
     patient_id = dialog._convert_patient_id('1')
 
     assert patient_id == 1
+
+
+def test_convert_patient_id_when_negative_id():
+    dialog = UserDialog(ConsoleUserInterface())
+
+    patient_id = dialog._convert_patient_id('-1')
+
+    assert patient_id == 1
