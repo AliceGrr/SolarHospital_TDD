@@ -21,7 +21,10 @@ class PatientsManager:
             raise PatientNotExistsException()
 
     def status_down(self, patient_id):
-        self._patients_base[patient_id-self._ID_OFFSET] -= 1
+        try:
+            self._patients_base[patient_id-self._ID_OFFSET] -= 1
+        except IndexError as _:
+            raise PatientNotExistsException()
 
     def discharge(self, patient_id):
         self._patients_base.pop(patient_id-self._ID_OFFSET)
