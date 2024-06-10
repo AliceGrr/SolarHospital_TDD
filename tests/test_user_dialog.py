@@ -30,6 +30,14 @@ def test_convert_command_get_status():
     assert command == 'get_status'
 
 
+def test_convert_command_when_unknown_user_command():
+    dialog = UserDialog(ConsoleUserInterface())
+
+    command = dialog._convert_command('покажи все статусы')
+
+    assert command == 'unknown'
+
+
 def test_convert_patient_id():
     dialog = UserDialog(ConsoleUserInterface())
 
