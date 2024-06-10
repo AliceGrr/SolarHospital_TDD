@@ -1,5 +1,7 @@
 import unittest.mock
 
+import pytest
+
 from console_user_interface import ConsoleUserInterface
 from user_dialog import UserDialog
 
@@ -49,6 +51,6 @@ def test_convert_patient_id():
 def test_convert_patient_id_when_negative_id():
     dialog = UserDialog(ConsoleUserInterface())
 
-    patient_id = dialog._convert_patient_id('-1')
+    with pytest.raises(InvalidPatientIdException):
+        _ = dialog._convert_patient_id('-1')
 
-    assert patient_id == 1
