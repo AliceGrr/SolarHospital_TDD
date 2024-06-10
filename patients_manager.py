@@ -1,3 +1,6 @@
+from exceptions import PatientNotExistsException
+
+
 class PatientsManager:
     _ID_OFFSET = 1
 
@@ -12,7 +15,10 @@ class PatientsManager:
         self._patients_base = patients_base
 
     def get_status(self, patient_id):
-        return self._STR_PATIENTS_STATUSES[self._patients_base[patient_id-self._ID_OFFSET]]
+        try:
+            return self._STR_PATIENTS_STATUSES[self._patients_base[patient_id-self._ID_OFFSET]]
+        except IndexError as _:
+            raise PatientNotExistsException()
 
     def status_down(self, patient_id):
         self._patients_base[patient_id-self._ID_OFFSET] -= 1

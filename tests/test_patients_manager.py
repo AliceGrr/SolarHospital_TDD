@@ -1,5 +1,6 @@
 import pytest
 
+from exceptions import PatientNotExistsException
 from patients_manager import PatientsManager
 
 
@@ -17,7 +18,7 @@ def test_get_status_when_patient_not_exists():
     patients_base = [2, 3, 1, 0]
     worker = PatientsManager(patients_base)
 
-    with pytest.raises(PatientNoxExistsException):
+    with pytest.raises(PatientNotExistsException):
         _ = worker.get_status(patient_id=99)
 
 
