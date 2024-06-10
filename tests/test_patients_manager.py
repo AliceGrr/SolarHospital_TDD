@@ -22,6 +22,14 @@ def test_get_status_when_patient_not_exists():
         _ = worker.get_status(patient_id=99)
 
 
+def test_get_status_when_empty_patients_base():
+    patients_base = []
+    worker = PatientsManager(patients_base)
+
+    with pytest.raises(PatientNotExistsException):
+        _ = worker.get_status(patient_id=1)
+
+
 def test_status_down():
     patients_base = [2, 3, 1, 0]
     worker = PatientsManager(patients_base)
@@ -37,6 +45,14 @@ def test_status_down_when_patient_not_exists():
 
     with pytest.raises(PatientNotExistsException):
         worker.status_down(patient_id=99)
+
+
+def test_status_down_when_empty_patients_base():
+    patients_base = []
+    worker = PatientsManager(patients_base)
+
+    with pytest.raises(PatientNotExistsException):
+        worker.status_down(patient_id=1)
 
 
 def test_discharge():
@@ -56,3 +72,11 @@ def test_discharge_when_patient_not_exists():
         worker.discharge(patient_id=99)
 
     assert worker._patients_base == [2, 3, 1, 0]
+
+
+def test_discharge_when_empty_patients_base():
+    patients_base = []
+    worker = PatientsManager(patients_base)
+
+    with pytest.raises(PatientNotExistsException):
+        worker.discharge(patient_id=1)
