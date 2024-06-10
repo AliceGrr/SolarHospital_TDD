@@ -1,3 +1,5 @@
+import pytest
+
 from patients_manager import PatientsManager
 
 
@@ -9,6 +11,14 @@ def test_get_status():
 
     assert text_status == 'Готов к выписке'
     assert worker._patients_base == [2, 3, 1, 0]
+
+
+def test_get_status_when_patient_not_exists():
+    patients_base = [2, 3, 1, 0]
+    worker = PatientsManager(patients_base)
+
+    with pytest.raises(PatientNoxExistsException):
+        _ = worker.get_status(patient_id=99)
 
 
 def test_status_down():
