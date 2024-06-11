@@ -10,11 +10,13 @@ class Hospital:
         while True:
             command = self._user_dialog.input_command()
             match command:
-                case CommandTypes.GET_STATUS:
-                    self._hospital_handler.get_status()
                 case CommandTypes.STOP:
                     self._user_dialog.print_stop()
                     break
+                case CommandTypes.GET_STATUS:
+                    self._hospital_handler.get_status()
+                case CommandTypes.STATUS_DOWN:
+                    self._hospital_handler.status_down()
                 case _:
                     break
 
