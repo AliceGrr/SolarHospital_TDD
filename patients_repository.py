@@ -1,7 +1,7 @@
 from exceptions import PatientNotExistsException, StatusTooLowException
 
 
-class PatientsManager:
+class PatientsRepository:
     _ID_OFFSET = 1
     _MIN_STATUS = 0
 

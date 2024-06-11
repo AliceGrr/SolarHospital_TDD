@@ -1,12 +1,12 @@
 import pytest
 
 from exceptions import PatientNotExistsException, StatusTooLowException
-from patients_manager import PatientsManager
+from patients_repository import PatientsRepository
 
 
 def test_get_status():
     patients_base = [2, 3, 1, 0]
-    worker = PatientsManager(patients_base)
+    worker = PatientsRepository(patients_base)
 
     text_status = worker.get_status(patient_id=2)
 
@@ -16,7 +16,7 @@ def test_get_status():
 
 def test_get_status_when_patient_not_exists():
     patients_base = [2, 3, 1, 0]
-    worker = PatientsManager(patients_base)
+    worker = PatientsRepository(patients_base)
 
     with pytest.raises(PatientNotExistsException):
         _ = worker.get_status(patient_id=99)
@@ -24,7 +24,7 @@ def test_get_status_when_patient_not_exists():
 
 def test_get_status_when_empty_patients_base():
     patients_base = []
-    worker = PatientsManager(patients_base)
+    worker = PatientsRepository(patients_base)
 
     with pytest.raises(PatientNotExistsException):
         _ = worker.get_status(patient_id=1)
@@ -32,7 +32,7 @@ def test_get_status_when_empty_patients_base():
 
 def test_status_down():
     patients_base = [2, 3, 1, 0]
-    worker = PatientsManager(patients_base)
+    worker = PatientsRepository(patients_base)
 
     worker.status_down(patient_id=2)
 
@@ -41,7 +41,7 @@ def test_status_down():
 
 def test_status_down_when_patient_not_exists():
     patients_base = [2, 3, 1, 0]
-    worker = PatientsManager(patients_base)
+    worker = PatientsRepository(patients_base)
 
     with pytest.raises(PatientNotExistsException):
         worker.status_down(patient_id=99)
@@ -49,7 +49,7 @@ def test_status_down_when_patient_not_exists():
 
 def test_status_down_when_empty_patients_base():
     patients_base = []
-    worker = PatientsManager(patients_base)
+    worker = PatientsRepository(patients_base)
 
     with pytest.raises(PatientNotExistsException):
         worker.status_down(patient_id=1)
@@ -57,7 +57,7 @@ def test_status_down_when_empty_patients_base():
 
 def test_status_down_when_patient_status_minimum():
     patients_base = [2, 3, 1, 0]
-    worker = PatientsManager(patients_base)
+    worker = PatientsRepository(patients_base)
 
     with pytest.raises(StatusTooLowException):
         worker.status_down(patient_id=4)
@@ -65,7 +65,7 @@ def test_status_down_when_patient_status_minimum():
 
 def test_discharge():
     patients_base = [2, 3, 1, 0]
-    worker = PatientsManager(patients_base)
+    worker = PatientsRepository(patients_base)
 
     worker.discharge(patient_id=2)
 
@@ -74,7 +74,7 @@ def test_discharge():
 
 def test_discharge_when_patient_not_exists():
     patients_base = [2, 3, 1, 0]
-    worker = PatientsManager(patients_base)
+    worker = PatientsRepository(patients_base)
 
     with pytest.raises(PatientNotExistsException):
         worker.discharge(patient_id=99)
@@ -84,7 +84,7 @@ def test_discharge_when_patient_not_exists():
 
 def test_discharge_when_empty_patients_base():
     patients_base = []
-    worker = PatientsManager(patients_base)
+    worker = PatientsRepository(patients_base)
 
     with pytest.raises(PatientNotExistsException):
         worker.discharge(patient_id=1)
