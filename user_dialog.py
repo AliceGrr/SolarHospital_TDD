@@ -43,3 +43,6 @@ class UserDialog:
 
     def print_patient_discharged(self):
         self._user_interface.print('Пациент выписан')
+
+    def print_message(self, message):
+        self._user_interface.print(message)

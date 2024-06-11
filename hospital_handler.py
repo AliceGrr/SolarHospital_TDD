@@ -1,12 +1,18 @@
+from exceptions import PatientNotExistsException
+
+
 class HospitalHandler:
     def __init__(self, user_dialog, patients_repository):
         self._user_dialog = user_dialog
         self._patients_repository = patients_repository
 
     def get_status(self):
-        patient_id = self._user_dialog.input_patient_id()
-        status = self._patients_repository.get_status(patient_id)
-        self._user_dialog.print_status(status)
+        try:
+            patient_id = self._user_dialog.input_patient_id()
+            status = self._patients_repository.get_status(patient_id)
+            self._user_dialog.print_status(status)
+        except PatientNotExistsException as ex:
+            self._user_dialog.print_message(ex.message)
 
     def status_down(self):
         patient_id = self._user_dialog.input_patient_id()
