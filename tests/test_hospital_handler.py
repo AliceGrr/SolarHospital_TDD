@@ -14,7 +14,7 @@ def test_get_status():
 
     hospital_handler.get_status()
 
-    console_mock.assert_called_with('Статус пациента: "Слегка болен"')
+    console_mock.print.assert_called_with('Статус пациента: "Слегка болен"')
 
 
 def test_status_down():

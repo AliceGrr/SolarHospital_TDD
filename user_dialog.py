@@ -27,11 +27,11 @@ class UserDialog:
                 return command
         return 'unknown'
 
-    def request_command(self):
+    def input_command(self):
         user_input = self._user_interface.input("Введите команду: ")
         return self._convert_command(user_input)
 
-    def request_patient_id(self):
+    def input_patient_id(self):
         user_input = self._user_interface.input("Введите id пациента: ")
         return self._convert_patient_id(user_input)
 

@@ -11,7 +11,7 @@ from user_dialog import UserDialog
 def test_request_command_get_status(_):
     dialog = UserDialog(ConsoleUserInterface())
 
-    command = dialog.request_command()
+    command = dialog.input_command()
 
     assert command == 'get_status'
 
@@ -20,7 +20,7 @@ def test_request_command_get_status(_):
 def test_request_id(_):
     dialog = UserDialog(ConsoleUserInterface())
 
-    patient_id = dialog.request_patient_id()
+    patient_id = dialog.input_patient_id()
 
     assert patient_id == 1
 
