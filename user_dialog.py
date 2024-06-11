@@ -24,8 +24,9 @@ class UserDialog:
         return int(user_input_patient_id)
 
     def _convert_command(self, user_input_command):
+        lowered_user_input_command = user_input_command.lower()
         for command, user_input in self._COMMANDS.items():
-            if user_input_command == user_input:
+            if lowered_user_input_command == user_input:
                 return command
         return CommandTypes.UNKNOWN
 
