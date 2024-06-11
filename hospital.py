@@ -17,6 +17,8 @@ class Hospital:
                     self._hospital_handler.get_status()
                 case CommandTypes.STATUS_DOWN:
                     self._hospital_handler.status_down()
+                case CommandTypes.DISCHARGE:
+                    self._hospital_handler.discharge()
                 case _:
                     break
 
