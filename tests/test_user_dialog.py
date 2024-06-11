@@ -9,7 +9,7 @@ from user_dialog import UserDialog
 
 
 @unittest.mock.patch('builtins.input', side_effect=['показать статус'])
-def test_request_command_get_status(_):
+def test_input_command_get_status(_):
     dialog = UserDialog(ConsoleUserInterface())
 
     command = dialog.input_command()
@@ -18,7 +18,7 @@ def test_request_command_get_status(_):
 
 
 @unittest.mock.patch('builtins.input', side_effect=['1'])
-def test_request_id(_):
+def test_input_id(_):
     dialog = UserDialog(ConsoleUserInterface())
 
     patient_id = dialog.input_patient_id()
