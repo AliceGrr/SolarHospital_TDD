@@ -66,3 +66,15 @@ def test_discharge():
     console_mock.print.assert_called_with('Пациент выписан')
     assert patients_repository._patients_base == [3, 1, 0]
 
+
+def test_discharge_when_patient_not_exists():
+    patients_repository = PatientsRepository([2, 3, 1, 0])
+    console_mock = MagicMock()
+    console_mock.input.return_value = 99
+    user_dialog = UserDialog(console_mock)
+    hospital_handler = HospitalHandler(user_dialog, patients_repository)
+
+    hospital_handler.discharge()
+
+    console_mock.print.assert_called_with('Такого пациента нет в больнице')
+
