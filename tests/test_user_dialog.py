@@ -44,6 +44,8 @@ def test_convert_command_when_unknown_user_command():
 
 test_data = [
     ('показать статус', CommandTypes.GET_STATUS),
+    ('поКАЗАТЬ статус', CommandTypes.GET_STATUS),
+
     ('выписать', CommandTypes.DISCHARGE),
     ('понизить статус', CommandTypes.STATUS_DOWN),
     ('стоп', CommandTypes.STOP)
