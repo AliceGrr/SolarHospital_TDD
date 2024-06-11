@@ -24,4 +24,4 @@ def test_status_down():
     hospital_handler.status_down()
 
     user_dialog.print_status_changed.assert_called_with('Болен')
-    assert patients_repository._patients_base == [2, 2, 1, 0]
+    assert patients_repository._patients_base == [1, 3, 1, 0]
