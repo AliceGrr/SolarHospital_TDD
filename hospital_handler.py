@@ -28,5 +28,5 @@ class HospitalHandler:
             patient_id = self._user_dialog.input_patient_id()
             self._patients_repository.discharge(patient_id)
             self._user_dialog.print_patient_discharged()
-        except PatientNotExistsException as ex:
+        except (PatientNotExistsException, InvalidPatientIdException) as ex:
             self._user_dialog.print_message(ex.message)
