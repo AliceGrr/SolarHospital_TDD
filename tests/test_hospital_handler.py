@@ -42,6 +42,18 @@ def test_status_down():
     assert patients_repository._patients_base == [1, 3, 1, 0]
 
 
+def test_status_down_when_patient_not_exists():
+    patients_repository = PatientsRepository([2, 3, 1, 0])
+    console_mock = MagicMock()
+    console_mock.input.return_value = 99
+    user_dialog = UserDialog(console_mock)
+    hospital_handler = HospitalHandler(user_dialog, patients_repository)
+
+    hospital_handler.status_down()
+
+    console_mock.print.assert_called_with('Такого пациента нет в больнице')
+
+
 def test_discharge():
     patients_repository = PatientsRepository([2, 3, 1, 0])
     console_mock = MagicMock()
