@@ -1,5 +1,6 @@
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, call
 
+from hospital import Hospital
 from hospital_handler import HospitalHandler
 from patients_repository import PatientsRepository
 from user_dialog import UserDialog
@@ -12,16 +13,22 @@ def test_get_status():
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
     hospital = Hospital(hospital_handler, user_dialog)
 
+    console_mock.input.side_effect = ['показать статус', '1', 'стоп']
+
     hospital.start_work()
 
-    console_mock.input.return_value = ['get status', '1', 'stop']
-
-    console_mock.input.assert_called_with([
-        "Введите команду: ",
-        "Введите id пациента: ",
-        "Введите команду: ",
-    ])
-    console_mock.print.assert_called_with([
-        'Статус пациента: "Слегка болен"',
-        'Работа закончена'
-    ])
+    console_mock.input.assert_has_calls(
+        [
+            call("Введите команду: "),
+            call("Введите id пациента: "),
+            call("Введите команду: "),
+        ],
+        any_order=False,
+    )
+    console_mock.print.assert_has_calls(
+        [
+            call('Статус пациента: "Слегка болен"'),
+            call('Работа закончена')
+        ],
+        any_order=False
+    )

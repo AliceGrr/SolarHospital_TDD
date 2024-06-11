@@ -6,7 +6,8 @@ class UserDialog:
     _COMMANDS = {
         CommandTypes.GET_STATUS: 'показать статус',
         CommandTypes.DISCHARGE: 'выписать',
-        CommandTypes.STATUS_DOWN: 'понизить статус'
+        CommandTypes.STATUS_DOWN: 'понизить статус',
+        CommandTypes.STOP: 'стоп'
     }
 
     def __init__(self, user_interface):
@@ -47,3 +48,6 @@ class UserDialog:
 
     def print_message(self, message):
         self._user_interface.print(message)
+
+    def print_stop(self):
+        self._user_interface.print('Работа закончена')

@@ -6,3 +6,4 @@ class CommandTypes(Enum):
     GET_STATUS = 1
     STATUS_DOWN = 2
     DISCHARGE = 3
+    STOP = 4
