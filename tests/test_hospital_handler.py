@@ -8,7 +8,7 @@ from user_dialog import UserDialog
 def test_get_status():
     patients_repository = PatientsRepository([2, 3, 1, 0])
     console_mock = MagicMock()
-    console_mock.input.return_value = 1
+    console_mock.input.return_value = '1'
     user_dialog = UserDialog(console_mock)
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
 
@@ -20,7 +20,7 @@ def test_get_status():
 def test_get_status_when_patient_not_exists():
     patients_repository = PatientsRepository([2, 3, 1, 0])
     console_mock = MagicMock()
-    console_mock.input.return_value = 99
+    console_mock.input.return_value = '99'
     user_dialog = UserDialog(console_mock)
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
 
@@ -44,7 +44,7 @@ def test_get_status_when_invalid_patient_id():
 def test_status_down():
     patients_repository = PatientsRepository([2, 3, 1, 0])
     console_mock = MagicMock()
-    console_mock.input.return_value = 1
+    console_mock.input.return_value = '1'
     user_dialog = UserDialog(console_mock)
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
 
@@ -57,7 +57,7 @@ def test_status_down():
 def test_status_down_when_patient_not_exists():
     patients_repository = PatientsRepository([2, 3, 1, 0])
     console_mock = MagicMock()
-    console_mock.input.return_value = 99
+    console_mock.input.return_value = '99'
     user_dialog = UserDialog(console_mock)
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
 
@@ -81,7 +81,7 @@ def test_status_down_when_invalid_patient_id():
 def test_status_down_when_patient_status_minimum():
     patients_repository = PatientsRepository([2, 3, 1, 0])
     console_mock = MagicMock()
-    console_mock.input.return_value = 4
+    console_mock.input.return_value = '4'
     user_dialog = UserDialog(console_mock)
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
 
@@ -93,7 +93,7 @@ def test_status_down_when_patient_status_minimum():
 def test_discharge():
     patients_repository = PatientsRepository([2, 3, 1, 0])
     console_mock = MagicMock()
-    console_mock.input.return_value = 1
+    console_mock.input.return_value = '1'
     user_dialog = UserDialog(console_mock)
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
 
@@ -106,7 +106,7 @@ def test_discharge():
 def test_discharge_when_patient_not_exists():
     patients_repository = PatientsRepository([2, 3, 1, 0])
     console_mock = MagicMock()
-    console_mock.input.return_value = 99
+    console_mock.input.return_value = '99'
     user_dialog = UserDialog(console_mock)
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
 
