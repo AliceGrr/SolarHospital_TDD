@@ -42,6 +42,23 @@ def test_convert_command_when_unknown_user_command():
     assert command == CommandTypes.UNKNOWN
 
 
+test_data = [
+    ('показать статус', CommandTypes.GET_STATUS),
+    ('выписать', CommandTypes.DISCHARGE),
+    ('понизить статус', CommandTypes.STATUS_DOWN),
+    ('стоп', CommandTypes.STOP)
+]
+
+
+@pytest.mark.parametrize("user_input,command_type", test_data)
+def test_user_input_and_command_mapping(user_input, command_type):
+    dialog = UserDialog(ConsoleUserInterface())
+
+    command = dialog._convert_command(user_input)
+
+    assert command == command_type
+
+
 def test_convert_patient_id():
     dialog = UserDialog(ConsoleUserInterface())
 
