@@ -25,3 +25,16 @@ def test_status_down():
 
     user_dialog.print_status_changed.assert_called_with('Болен')
     assert patients_repository._patients_base == [1, 3, 1, 0]
+
+
+def test_discharge():
+    patients_repository = PatientsRepository([2, 3, 1, 0])
+    user_dialog = MagicMock()
+    user_dialog.input_patient_id = MagicMock(return_value=1)
+    hospital_handler = HospitalHandler(user_dialog, patients_repository)
+
+    hospital_handler.discharge()
+
+    user_dialog.print_patient_discharged.assert_called()
+    assert patients_repository._patients_base == [3, 1, 0]
+
