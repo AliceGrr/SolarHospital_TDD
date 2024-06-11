@@ -29,6 +29,18 @@ def test_get_status_when_patient_not_exists():
     console_mock.print.assert_called_with('Такого пациента нет в больнице')
 
 
+def test_get_status_when_invalid_patient_id():
+    patients_repository = PatientsRepository([2, 3, 1, 0])
+    console_mock = MagicMock()
+    console_mock.input.return_value = "два"
+    user_dialog = UserDialog(console_mock)
+    hospital_handler = HospitalHandler(user_dialog, patients_repository)
+
+    hospital_handler.get_status()
+
+    console_mock.print.assert_called_with('ID пациента должно быть положительным числом')
+
+
 def test_status_down():
     patients_repository = PatientsRepository([2, 3, 1, 0])
     console_mock = MagicMock()
