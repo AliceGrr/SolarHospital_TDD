@@ -3,6 +3,7 @@ import unittest.mock
 import pytest
 
 from console_user_interface import ConsoleUserInterface
+from constants import CommandTypes
 from exceptions import InvalidPatientIdException
 from user_dialog import UserDialog
 
@@ -13,7 +14,7 @@ def test_request_command_get_status(_):
 
     command = dialog.input_command()
 
-    assert command == 'get_status'
+    assert command == CommandTypes.GET_STATUS
 
 
 @unittest.mock.patch('builtins.input', side_effect=['1'])
@@ -30,7 +31,7 @@ def test_convert_command_get_status():
 
     command = dialog._convert_command('показать статус')
 
-    assert command == 'get_status'
+    assert command == CommandTypes.GET_STATUS
 
 
 def test_convert_command_when_unknown_user_command():
@@ -38,7 +39,7 @@ def test_convert_command_when_unknown_user_command():
 
     command = dialog._convert_command('покажи все статусы')
 
-    assert command == 'unknown'
+    assert command == CommandTypes.UNKNOWN
 
 
 def test_convert_patient_id():

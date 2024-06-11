@@ -1,11 +1,12 @@
+from constants import CommandTypes
 from exceptions import InvalidPatientIdException
 
 
 class UserDialog:
     _COMMANDS = {
-        'get_status': 'показать статус',
-        'discharge': 'выписать',
-        'status_down': 'понизить статус'
+        CommandTypes.GET_STATUS: 'показать статус',
+        CommandTypes.DISCHARGE: 'выписать',
+        CommandTypes.STATUS_DOWN: 'понизить статус'
     }
 
     def __init__(self, user_interface):
@@ -25,7 +26,7 @@ class UserDialog:
         for command, user_input in self._COMMANDS.items():
             if user_input_command == user_input:
                 return command
-        return 'unknown'
+        return CommandTypes.UNKNOWN
 
     def input_command(self):
         user_input = self._user_interface.input("Введите команду: ")
