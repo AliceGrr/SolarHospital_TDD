@@ -78,6 +78,18 @@ def test_status_down_when_invalid_patient_id():
     console_mock.print.assert_called_with('ID пациента должно быть положительным числом')
 
 
+def test_status_down_when_patient_status_minimum():
+    patients_repository = PatientsRepository([2, 3, 1, 0])
+    console_mock = MagicMock()
+    console_mock.input.return_value = 4
+    user_dialog = UserDialog(console_mock)
+    hospital_handler = HospitalHandler(user_dialog, patients_repository)
+
+    hospital_handler.status_down()
+
+    console_mock.print.assert_called_with('Статус нельзя понизить (никто не умирает у нас)')
+
+
 def test_discharge():
     patients_repository = PatientsRepository([2, 3, 1, 0])
     console_mock = MagicMock()
