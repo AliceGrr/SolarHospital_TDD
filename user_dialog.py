@@ -35,3 +35,5 @@ class UserDialog:
         user_input = self._user_interface.input("Введите id пациента: ")
         return self._convert_patient_id(user_input)
 
+    def print_status(self, patient_status):
+        self._user_interface.print(f'Статус пациента: "{patient_status}"')
