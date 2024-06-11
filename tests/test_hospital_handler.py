@@ -19,24 +19,26 @@ def test_get_status():
 
 def test_status_down():
     patients_repository = PatientsRepository([2, 3, 1, 0])
-    user_dialog = MagicMock()
-    user_dialog.input_patient_id = MagicMock(return_value=1)
+    console_mock = MagicMock()
+    console_mock.input.return_value = 1
+    user_dialog = UserDialog(console_mock)
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
 
     hospital_handler.status_down()
 
-    user_dialog.print_status_changed.assert_called_with('Болен')
+    console_mock.print.assert_called_with('Новый статус пациента: "Болен"')
     assert patients_repository._patients_base == [1, 3, 1, 0]
 
 
 def test_discharge():
     patients_repository = PatientsRepository([2, 3, 1, 0])
-    user_dialog = MagicMock()
-    user_dialog.input_patient_id = MagicMock(return_value=1)
+    console_mock = MagicMock()
+    console_mock.input.return_value = 1
+    user_dialog = UserDialog(console_mock)
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
 
     hospital_handler.discharge()
 
-    user_dialog.print_patient_discharged.assert_called()
+    console_mock.print.assert_called_with('Пациент выписан')
     assert patients_repository._patients_base == [3, 1, 0]
 
