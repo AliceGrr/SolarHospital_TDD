@@ -37,3 +37,9 @@ class UserDialog:
 
     def print_status(self, patient_status):
         self._user_interface.print(f'Статус пациента: "{patient_status}"')
+
+    def print_status_changed(self, patient_status):
+        self._user_interface.print(f'Новый статус пациента: "{patient_status}"')
+
+    def print_patient_discharged(self):
+        self._user_interface.print('Пациент выписан')
