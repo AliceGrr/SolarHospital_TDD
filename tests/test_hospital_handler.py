@@ -2,17 +2,19 @@ from unittest.mock import MagicMock
 
 from hospital_handler import HospitalHandler
 from patients_repository import PatientsRepository
+from user_dialog import UserDialog
 
 
 def test_get_status():
     patients_repository = PatientsRepository([2, 3, 1, 0])
-    user_dialog = MagicMock()
-    user_dialog.input_patient_id = MagicMock(return_value=1)
+    console_mock = MagicMock()
+    console_mock.input.return_value = 1
+    user_dialog = UserDialog(console_mock)
     hospital_handler = HospitalHandler(user_dialog, patients_repository)
 
     hospital_handler.get_status()
 
-    user_dialog.print_status.assert_called_with('Слегка болен')
+    console_mock.assert_called_with('Статус пациента: "Слегка болен"')
 
 
 def test_status_down():
