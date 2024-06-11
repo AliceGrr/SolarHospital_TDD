@@ -1,4 +1,4 @@
-from exceptions import PatientNotExistsException, InvalidPatientIdException
+from exceptions import PatientNotExistsException, InvalidPatientIdException, StatusTooLowException
 
 
 class HospitalHandler:
@@ -20,7 +20,7 @@ class HospitalHandler:
             self._patients_repository.status_down(patient_id)
             new_status = self._patients_repository.get_status(patient_id)
             self._user_dialog.print_status_changed(new_status)
-        except (PatientNotExistsException, InvalidPatientIdException) as ex:
+        except (PatientNotExistsException, InvalidPatientIdException, StatusTooLowException) as ex:
             self._user_dialog.print_message(ex.message)
 
     def discharge(self):
